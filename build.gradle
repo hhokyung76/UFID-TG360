@@ -1,0 +1,55 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.7'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.tg360'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+apply plugin: 'war'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
+    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+    implementation 'mysql:mysql-connector-java:8.0.29'
+
+    //jsp
+    implementation('javax.servlet:jstl')
+    implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
+
+
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+
+    implementation 'io.vertx:vertx-web:4.3.0'
+    implementation 'io.vertx:vertx-web-client:4.3.1'
+
+    implementation 'org.apache.commons:commons-pool2:2.11.1'
+    implementation 'com.github.ua-parser:uap-java:1.5.2'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
